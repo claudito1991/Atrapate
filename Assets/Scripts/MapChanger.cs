@@ -37,6 +37,8 @@ public class MapChanger : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            //MUSICA AMBIENTE TRISTE
+            //CAMBIO DE PANTALLA VFX
             Debug.Log("Triggered");
             if(gameManager.isHappyScene)
             {
@@ -60,6 +62,8 @@ public class MapChanger : MonoBehaviour
 
             else
             {
+                // MUSICA AMBIENTE FELIZ
+                //CAMBIO DE PANTALLA VFX
                 Debug.Log("Entra en happy scene false");
                 tilemapTriste.GetComponent<TilemapRenderer>().sortingOrder = 4;
                 tilemapTriste.SetActive(false);
@@ -75,10 +79,9 @@ public class MapChanger : MonoBehaviour
                 {
                     colina.SetActive(false);
                 }
-                
 
-                var gameManager = GetComponentInParent<ChacraManager>();
                 gameManager.Victory();
+
             }
 
           

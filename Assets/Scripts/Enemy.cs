@@ -42,6 +42,10 @@ public class Enemy : MonoBehaviour
 
     private void PlayerSpriteFlip()
     {
+        if(playerGo == null)
+        {
+            return;
+        }
         playerPosition = playerGo.transform.position- transform.position;
 
 

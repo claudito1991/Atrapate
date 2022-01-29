@@ -16,6 +16,10 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(playerGO == null)
+        {
+            return;
+        }
         Vector3 smoothPosition = Vector3.Lerp(transform.position, playerGO.transform.position  + offset, movementSpeed * Time.deltaTime);
         transform.position = smoothPosition;
         

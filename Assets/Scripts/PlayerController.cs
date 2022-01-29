@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float xFirepointOffset;
     [SerializeField] float yFirepointOffset;
 
+    [SerializeField] BulletMotion[] bulletTypes;
+    public bool isPoweredUp;
+
     private SpriteRenderer playerSprite;
     private Rigidbody2D playerRB;
     private bool playerRenderDirection;
@@ -56,7 +59,20 @@ public class PlayerController : MonoBehaviour
 
     private void FireSequence()
     {
-        var bulletInstantiated = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        BulletMotion bulletInstantiated = null;
+
+        if (isPoweredUp)
+        {
+            bulletInstantiated = Instantiate(bulletTypes[0], transform.position, Quaternion.identity);
+        }
+        
+        else
+        {
+            bulletInstantiated = Instantiate(bulletTypes[1], transform.position, Quaternion.identity);
+        }
+        
+
+        
         if(playerSprite.flipX)
         {
             bulletInstantiated.DirectionOfShooting(true);

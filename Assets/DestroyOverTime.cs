@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DestroyOverTime : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float lifeTime;
+    private void OnEnable()
     {
+        StartCoroutine(DelayedDestroy());
         
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator DelayedDestroy()
     {
-        
+        yield return new WaitForSeconds(lifeTime);
     }
 }

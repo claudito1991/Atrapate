@@ -7,6 +7,7 @@ public class BulletMotion : MonoBehaviour
 {
     [SerializeField] float shootSpeed;
     
+    
     private bool flipedX;
 
 
@@ -21,6 +22,7 @@ public class BulletMotion : MonoBehaviour
         if(fliped)
         {
             transform.position = new Vector3(transform.position.x - Time.deltaTime * shootSpeed, transform.position.y, transform.position.z);
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
 
         else

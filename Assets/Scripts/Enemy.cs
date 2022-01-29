@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackRange;
     [SerializeField] int enemyDamage;
     [SerializeField] int playerReward;
+    [SerializeField] int enemyHealth;
     
     private SpriteRenderer enemySprite;
     private Rigidbody2D enemyRB;
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour
         {
             enemySprite.flipX = false;
         }
-        Debug.Log(playerPosition);
+        //Debug.Log(playerPosition);
     }
 
     private void FixedUpdate()
@@ -74,11 +75,27 @@ public class Enemy : MonoBehaviour
         gameManager.DecreaseScore(enemyDamage);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("bullet"))
+        if (collision.CompareTag("Bullet"))
         {
-            gameManager.IncreaseScore(playerReward);
+           // Debug.Log("Collisioned");
+            enemyHealth -= playerGo.GetComponent<PlayerController>().playerDamage;
+            //Debug.Log(enemyHealth);
+
+            if(enemyHealth<0)
+            {
+                EnemyDeath();
+            }
+            
         }
     }
+
+    private void EnemyDeath()
+    {
+        gameManager.IncreaseScore(playerReward);
+        Destroy(gameObject);
+    }
+
+
 }

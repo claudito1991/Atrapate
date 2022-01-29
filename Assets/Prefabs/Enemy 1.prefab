@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 6259673282152957096}
   - component: {fileID: 6259673282152957097}
   - component: {fileID: 6259673282152957102}
+  - component: {fileID: 1272951688}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -127,7 +128,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6259673282152957103}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.55, y: 0.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -172,3 +173,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1272951688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259673282152957103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8da7e8353ad3a45817e3b5b06d7ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGo: {fileID: 0}
+  enemySpeed: 1
+  attackRange: 0.5
+  enemyDamage: 5
+  playerReward: 10
+  enemyHealth: 100

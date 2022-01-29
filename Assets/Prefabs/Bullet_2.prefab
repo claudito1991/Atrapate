@@ -93,9 +93,10 @@ GameObject:
   - component: {fileID: 4445256877186662293}
   - component: {fileID: 4445256877186662295}
   - component: {fileID: 1076290642731974187}
+  - component: {fileID: 6209006206967300983}
   m_Layer: 0
   m_Name: Bullet_2
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +145,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootSpeed: 10
+  rotationAngle: 0
+  smoothTime: 0
 --- !u!114 &1076290642731974187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445256877186662292}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fb7fe79f4ea994cab8c81b309e4582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 2
+--- !u!114 &6209006206967300983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4445256877186662292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5fb7fe79f4ea994cab8c81b309e4582, type: 3}
+  m_Script: {fileID: 11500000, guid: bc456fdced7132741ab8a7161d3845f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 2
+  bullet_gfx: {fileID: 4445256875896478562}

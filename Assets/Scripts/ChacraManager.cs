@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ChacraManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] bulletTypes;
+    [SerializeField] BulletMotion[] bulletTypes;
     [SerializeField] GameObject player;
-    private int score;
+    [SerializeField] int score;
 
     // Start is called before the first frame update
     void Start()
@@ -34,20 +34,27 @@ public class ChacraManager : MonoBehaviour
         Destroy(player);
     }
 
-    public GameObject BulletSelector()
+    public BulletMotion BulletSelector()
     {
-        if (score >= 10 && score < 20)
+        if (score < 10)
+        {
+            return bulletTypes[2];
+        }
+        if (score >= 10 && score < 50)
         {
             //trigger GameOver
+            player.GetComponent<PlayerController>().PlayerDamage(10);
             return bulletTypes[0];
         }
 
-        if(score >= 20 && score < 30) 
+        else
         {
+            player.GetComponent<PlayerController>().PlayerDamage(5);
             return bulletTypes[1];
         }
-
-        return bulletTypes[2];
+      
+        
+        
     }
 
 

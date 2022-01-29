@@ -7,12 +7,14 @@ public class DestroyOverTime : MonoBehaviour
     [SerializeField] float lifeTime;
     private void OnEnable()
     {
-        StartCoroutine(DelayedDestroy());
-        
+        Invoke("DelayedDestroy", lifeTime);
+
+
+
     }
 
-    IEnumerator DelayedDestroy()
+    void DelayedDestroy()
     {
-        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
     }
 }

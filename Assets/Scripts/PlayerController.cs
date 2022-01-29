@@ -12,9 +12,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BulletMotion bulletPrefab;
     [SerializeField] float xFirepointOffset;
     [SerializeField] float yFirepointOffset;
-    
 
-    [SerializeField] BulletMotion[] bulletTypes;
+
+
+
+    //[SerializeField] BulletMotion[] bulletTypes;
+    public int playerDamage;
     public bool isPoweredUp;
 
     private SpriteRenderer playerSprite;
@@ -63,25 +66,26 @@ public class PlayerController : MonoBehaviour
 
     private void FireSequence()
     {
-
+        bulletPrefab = gameManager.BulletSelector();
+        var bulletInstantiated = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         //EN LUGAR DE LLAMAR A BULLETTYPES VOY A LLAMAR LA FUNCION DEL MANAGER PARA QUE ME DIGA QUE BALA USAR EN FUNCION DEL SCORE
         //Se chequea si el personaje consumió o no un powerUP y según esto se instancia un tipo de bullet u otro. 
-        BulletMotion bulletInstantiated = null;
+        //BulletMotion bulletInstantiated = null;
 
-        if (isPoweredUp)
-        {
-            bulletInstantiated = Instantiate(bulletTypes[0], transform.position, Quaternion.identity);
-        }
-        
-        else
-        {
-            bulletInstantiated = Instantiate(bulletTypes[1], transform.position, Quaternion.identity);
-        }
-        
+        //if (isPoweredUp)
+        //{
+        //    bulletInstantiated = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        //}
+
+        //else
+        //{
+        //    bulletInstantiated = Instantiate(bulletTypes[1], transform.position, Quaternion.identity);
+        //}
+
 
         //Se chequea el estado del sprite del player. Según hacia qué lado esté mirando se va a invocar una función que cambie
         //el lugar en el que se instancia la bullet y que cambie la dirección de movimiento de la misma. 
-        if(playerSprite.flipX)
+        if (playerSprite.flipX)
         {
             bulletInstantiated.DirectionOfShooting(true);
             bulletInstantiated.transform.position = transform.position + new Vector3(-xFirepointOffset, yFirepointOffset, 0);
@@ -129,6 +133,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         playerRB.velocity = new Vector2(HorizontalMovement * movementSpeed, playerRB.velocity.y);
+    }
+
+    public void PlayerDamage(int damage)
+    {
+        playerDamage = damage;
+        Debug.Log(playerDamage);
     }
 
 

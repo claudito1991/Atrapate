@@ -40,7 +40,7 @@ public class ChacraManager : MonoBehaviour
         {
             return bulletTypes[2];
         }
-        if (score >= 10 && score < 50)
+        if (score >= 10 && score < 20)
         {
             //trigger GameOver
             player.GetComponent<PlayerController>().PlayerDamage(10);

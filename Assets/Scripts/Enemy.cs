@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] int enemyDamage;
     [SerializeField] int playerReward;
     [SerializeField] int enemyHealth;
-    
+    [SerializeField] float enemyAttackCooldown;
+    public float currentCooldown;
+
+
     private SpriteRenderer enemySprite;
     private Rigidbody2D enemyRB;
     private Vector3 playerPosition;
@@ -26,6 +29,7 @@ public class Enemy : MonoBehaviour
         enemySprite = GetComponentInChildren<SpriteRenderer>();
         enemyRB = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<ChacraManager>();
+        currentCooldown = 0;
     }
 
     // Update is called once per frame
@@ -66,7 +70,14 @@ public class Enemy : MonoBehaviour
 
         if(playerDistance < attackRange)
         {
-            EnemyAttack();
+            currentCooldown = Time.time;
+            Debug.Log($"current cooldown: {currentCooldown}");
+            if(currentCooldown>enemyAttackCooldown)
+            {
+                EnemyAttack();
+                currentCooldown = 0f;
+            }
+            
         }
     }
 

@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BulletMotion bulletPrefab;
     [SerializeField] float xFirepointOffset;
     [SerializeField] float yFirepointOffset;
+    
 
     [SerializeField] BulletMotion[] bulletTypes;
     public bool isPoweredUp;
 
     private SpriteRenderer playerSprite;
     private Rigidbody2D playerRB;
+    private ChacraManager gameManager;
     private bool playerRenderDirection;
 
 
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRB = GetComponentInChildren<Rigidbody2D>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
+        gameManager = FindObjectOfType<ChacraManager>();
     }
     private void Update()
     {
@@ -41,7 +44,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        Debug.Log($"Horizontal Movement: {HorizontalMovement}");
+        //Debug.Log($"Horizontal Movement: {HorizontalMovement}");
         GroundedCheck();
 
         if (Input.GetKeyDown(KeyCode.Space) && Grounded)
@@ -60,6 +63,8 @@ public class PlayerController : MonoBehaviour
 
     private void FireSequence()
     {
+
+        //EN LUGAR DE LLAMAR A BULLETTYPES VOY A LLAMAR LA FUNCION DEL MANAGER PARA QUE ME DIGA QUE BALA USAR EN FUNCION DEL SCORE
         //Se chequea si el personaje consumió o no un powerUP y según esto se instancia un tipo de bullet u otro. 
         BulletMotion bulletInstantiated = null;
 
@@ -125,4 +130,6 @@ public class PlayerController : MonoBehaviour
     {
         playerRB.velocity = new Vector2(HorizontalMovement * movementSpeed, playerRB.velocity.y);
     }
+
+
 }

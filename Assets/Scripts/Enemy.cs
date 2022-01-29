@@ -12,16 +12,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] int playerReward;
     [SerializeField] int enemyHealth;
     [SerializeField] float enemyAttackCooldown;
-    public float currentCooldown;
+    public float nextAttack;
 
 
     private SpriteRenderer enemySprite;
     private Rigidbody2D enemyRB;
     private Vector3 playerPosition;
     private ChacraManager gameManager;
+    private float playerDistance;
 
-    
-    
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,13 +30,14 @@ public class Enemy : MonoBehaviour
         enemySprite = GetComponentInChildren<SpriteRenderer>();
         enemyRB = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<ChacraManager>();
-        currentCooldown = 0;
+        nextAttack = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerSpriteFlip();
+        
     }
 
     private void PlayerSpriteFlip()
@@ -59,31 +61,41 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         EnemyChasing();
-        
+        EnemyAttack();
     }
+
+    
 
     private void EnemyChasing()
     {
 
         enemyRB.velocity = new Vector2(playerPosition.x * enemySpeed, enemyRB.velocity.y);
-        var playerDistance = Vector3.Distance(playerPosition, transform.position);
+       
 
-        if(playerDistance < attackRange)
-        {
-            currentCooldown = Time.time;
-            Debug.Log($"current cooldown: {currentCooldown}");
-            if(currentCooldown>enemyAttackCooldown)
-            {
-                EnemyAttack();
-                currentCooldown = 0f;
-            }
-            
-        }
     }
 
     private void EnemyAttack()
     {
-        gameManager.DecreaseScore(enemyDamage);
+        if(playerGo == null)
+        {
+            return;
+        }
+        playerDistance = Vector3.Distance(playerGo.transform.position, transform.position);
+       
+        if (playerDistance < attackRange)
+        {
+            if (Time.time > nextAttack)
+            {
+                //Enemy attack vfx/sfx
+                gameManager.DecreaseScore(enemyDamage);
+                
+               
+                
+                nextAttack = Time.time + enemyAttackCooldown;
+                
+
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -105,6 +117,7 @@ public class Enemy : MonoBehaviour
     private void EnemyDeath()
     {
         gameManager.IncreaseScore(playerReward);
+        //Enemy attack vfx death.
         Destroy(gameObject);
     }
 

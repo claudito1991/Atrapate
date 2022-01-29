@@ -10,10 +10,16 @@ public class MapChanger : MonoBehaviour
     [SerializeField] GameObject[] colinasFelices;
     [SerializeField] GameObject[] colinasTriste;
     [SerializeField] BoxCollider2D triggerSwitch;
-    public bool isHappyScene=true;
+    [SerializeField] ChacraManager gameManager;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position,new Vector3(2,2,2));
+    }
     private void Start()
     {
+        
         tilemapTriste.SetActive(false);
         tilemapFeliz.SetActive(true);
         foreach (GameObject colina in colinasFelices)
@@ -32,7 +38,7 @@ public class MapChanger : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Triggered");
-            if(isHappyScene)
+            if(gameManager.isHappyScene)
             {
                 Debug.Log("Entra en happy scene true");
                 
@@ -40,7 +46,7 @@ public class MapChanger : MonoBehaviour
                 tilemapFeliz.SetActive(false);
                 tilemapTriste.GetComponent<TilemapRenderer>().sortingOrder = 5;
                 tilemapTriste.SetActive(true);
-                isHappyScene = false;
+                gameManager.HappyState(false);
 
                 foreach(GameObject colina in colinasFelices)
                 {
@@ -59,7 +65,7 @@ public class MapChanger : MonoBehaviour
                 tilemapTriste.SetActive(false);
                 tilemapFeliz.GetComponent<TilemapRenderer>().sortingOrder = 5;
                 tilemapFeliz.SetActive(true);
-                isHappyScene = true;
+                gameManager.HappyState(true);
 
                 foreach (GameObject colina in colinasFelices)
                 {
@@ -69,6 +75,10 @@ public class MapChanger : MonoBehaviour
                 {
                     colina.SetActive(false);
                 }
+                
+
+                var gameManager = GetComponentInParent<ChacraManager>();
+                gameManager.Victory();
             }
 
           

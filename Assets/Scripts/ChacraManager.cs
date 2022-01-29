@@ -8,21 +8,25 @@ public class ChacraManager : MonoBehaviour
     [SerializeField] BulletMotion[] bulletTypes;
     [SerializeField] GameObject player;
     [SerializeField] int score;
+    [SerializeField] Transform gameStartPosition;
+    [SerializeField] float minWinDistance;
+    public bool isHappyScene;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     public void IncreaseScore(int amount)
     {
-        score += Mathf.Abs(score);
+        score += Mathf.Abs(amount);
     }
 
     public void DecreaseScore(int amount)
     {
-        score -= Mathf.Abs(score);
+        score -= Mathf.Abs(amount);
+        Debug.Log($"actual score{score}");
         if(score<0)
         {
             GameOver();
@@ -31,6 +35,7 @@ public class ChacraManager : MonoBehaviour
 
     private void GameOver()
     {
+        //player death vfx
         Destroy(player);
     }
 
@@ -38,11 +43,13 @@ public class ChacraManager : MonoBehaviour
     {
         if (score < 10)
         {
+            //sfx chacra switch
+            //UI update chacra icon
             return bulletTypes[2];
         }
         if (score >= 10 && score < 20)
         {
-            //trigger GameOver
+            
             player.GetComponent<PlayerController>().PlayerDamage(10);
             return bulletTypes[0];
         }
@@ -55,6 +62,23 @@ public class ChacraManager : MonoBehaviour
       
         
         
+    }
+
+    public void Victory()
+    {
+        float distanceToStart = Vector3.Distance(player.transform.position, gameStartPosition.position);
+        if(distanceToStart > minWinDistance)
+        {
+            //Winning UI
+
+            Destroy(player);
+        }
+
+    }
+
+    public void HappyState(bool happy)
+    {
+        isHappyScene = happy;
     }
 
 

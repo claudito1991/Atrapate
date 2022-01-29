@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rayLongitude;
     [SerializeField] BulletMotion bulletPrefab;
     [SerializeField] float xFirepointOffset;
+    [SerializeField] float yFirepointOffset;
+
     private SpriteRenderer playerSprite;
     private Rigidbody2D playerRB;
     private bool playerRenderDirection;
@@ -49,7 +51,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + Vector3.right * xFirepointOffset, 0.5f);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(xFirepointOffset,yFirepointOffset,0), 0.5f);
     }
 
     private void FireSequence()
@@ -58,12 +60,12 @@ public class PlayerController : MonoBehaviour
         if(playerSprite.flipX)
         {
             bulletInstantiated.DirectionOfShooting(true);
-            bulletInstantiated.transform.position = transform.position + new Vector3(-xFirepointOffset, 0, 0);
+            bulletInstantiated.transform.position = transform.position + new Vector3(-xFirepointOffset, yFirepointOffset, 0);
         }
         else
         {
             bulletInstantiated.DirectionOfShooting(false);
-            bulletInstantiated.transform.position = transform.position + new Vector3(xFirepointOffset, 0, 0);
+            bulletInstantiated.transform.position = transform.position + new Vector3(xFirepointOffset, yFirepointOffset, 0);
         }
     }
 
@@ -95,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        playerRB.AddForce(Vector2.up * jumpForce);
+        playerRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse) ;
     }
 
     private void FixedUpdate()

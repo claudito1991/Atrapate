@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletMotion : MonoBehaviour
 {
     [SerializeField] float shootSpeed;
-    [SerializeField] int startXoffset;
+    
     private bool flipedX;
 
 

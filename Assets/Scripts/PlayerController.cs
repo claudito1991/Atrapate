@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Grounded)
         {
+            //Si el player está en el suelo nos permite saltar
             Jump();
         }
 
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void FireSequence()
     {
+        //Se chequea si el personaje consumió o no un powerUP y según esto se instancia un tipo de bullet u otro. 
         BulletMotion bulletInstantiated = null;
 
         if (isPoweredUp)
@@ -72,7 +74,8 @@ public class PlayerController : MonoBehaviour
         }
         
 
-        
+        //Se chequea el estado del sprite del player. Según hacia qué lado esté mirando se va a invocar una función que cambie
+        //el lugar en el que se instancia la bullet y que cambie la dirección de movimiento de la misma. 
         if(playerSprite.flipX)
         {
             bulletInstantiated.DirectionOfShooting(true);
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerSpriteFlip()
     {
+        //Pasado un umbral se decide si el sprite del player debe girar hacia un lado u el otro. 
         if (HorizontalMovement < -0.01f)
         {
             playerSprite.flipX = true;
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void GroundedCheck()
     {
+        //Chequea si el player está o no en el suelo
         Debug.DrawRay(transform.position + yOffset, Vector3.down * rayLongitude, Color.red);
         if (Physics2D.Raycast(transform.position + yOffset, Vector3.down, rayLongitude))
         {

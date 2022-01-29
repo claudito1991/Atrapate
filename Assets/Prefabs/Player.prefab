@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1637547073419870318}
   - component: {fileID: 1637547073419870319}
   m_Layer: 0
-  m_Name: john_idle
+  m_Name: Player_GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,4 +192,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   xFirepointOffset: 1.82
   yFirepointOffset: -0.25
+  bulletTypes: []
+  isPoweredUp: 0
   Grounded: 1

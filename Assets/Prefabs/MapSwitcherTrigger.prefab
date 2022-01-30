@@ -133,6 +133,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   triggerSwitch: {fileID: 0}
   gameManager: {fileID: 0}
   otherTrigger: {fileID: 0}

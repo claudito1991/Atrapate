@@ -12,6 +12,7 @@ public class MapChanger : MonoBehaviour
     [SerializeField] BoxCollider2D triggerSwitch;
     [SerializeField] ChacraManager gameManager;
     [SerializeField] GameObject otherTrigger;
+    private Camera mainCamera;
 
     private void OnDrawGizmos()
     {
@@ -20,6 +21,7 @@ public class MapChanger : MonoBehaviour
     }
     private void Start()
     {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         
         tilemapTriste.SetActive(false);
         tilemapFeliz.SetActive(true);
@@ -72,6 +74,7 @@ public class MapChanger : MonoBehaviour
                 {
                     colina.SetActive(true);
                 }
+                mainCamera.backgroundColor = Color.grey;
             }
 
             else
@@ -93,6 +96,7 @@ public class MapChanger : MonoBehaviour
                 {
                     colina.SetActive(false);
                 }
+                mainCamera.backgroundColor = Color.cyan;
 
                 gameManager.Victory();
 

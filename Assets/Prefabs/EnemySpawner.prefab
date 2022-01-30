@@ -48,7 +48,7 @@ MonoBehaviour:
   levelStartPosition: {fileID: 0}
   enemySpawnPosition: {fileID: 7094378968199501815}
   enemyPrefab: {fileID: 6259673282152957103, guid: c14d08b740766774aae35e42c65dd4f0, type: 3}
-  enemyStatsModifier: 0.4
+  enemyStatsModifier: 0.2
   enemyQuantity: 2
   enemySpeedModifier: 0
   MaxLevelSize: 3000

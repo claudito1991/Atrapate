@@ -49,7 +49,7 @@ MonoBehaviour:
   enemySpawnPosition: {fileID: 7094378968199501815}
   enemyPrefab: {fileID: 6259673282152957103, guid: c14d08b740766774aae35e42c65dd4f0, type: 3}
   enemyStatsModifier: 0.4
-  enemyQuantity: 1
+  enemyQuantity: 2
   enemySpeedModifier: 0
   MaxLevelSize: 3000
 --- !u!1 &7094378967751933636
@@ -167,7 +167,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.2174473, y: 0.5983596}
+  m_Offset: {x: 2.2174473, y: -3.4046245}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -178,5 +178,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.37315, y: 5.4348984}
+  m_Size: {x: 19.37315, y: 1.1848164}
   m_EdgeRadius: 0

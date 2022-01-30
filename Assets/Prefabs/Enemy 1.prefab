@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerGo: {fileID: 0}
   enemySpeed: 1
-  attackRange: 2
+  attackRange: 5
   enemyDamage: 5
   playerReward: 20
   enemyHealth: 50

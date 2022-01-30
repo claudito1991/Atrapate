@@ -11,6 +11,7 @@ public class MapChanger : MonoBehaviour
     [SerializeField] GameObject[] colinasTriste;
     [SerializeField] BoxCollider2D triggerSwitch;
     [SerializeField] ChacraManager gameManager;
+    [SerializeField] GameObject otherTrigger;
 
     private void OnDrawGizmos()
     {
@@ -32,7 +33,20 @@ public class MapChanger : MonoBehaviour
         }
     }
 
- 
+    private void Update()
+    {
+        CheckOtherTrigger();
+    }
+
+    void CheckOtherTrigger()
+    {
+        if(otherTrigger == null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player"))
@@ -84,7 +98,7 @@ public class MapChanger : MonoBehaviour
 
             }
 
-          
+            Destroy(gameObject);
         }
 
 

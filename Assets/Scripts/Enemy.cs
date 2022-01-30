@@ -6,11 +6,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject playerGo;
-    [SerializeField] float enemySpeed;
+    public float enemySpeed;
     [SerializeField] float attackRange;
-    [SerializeField] int enemyDamage;
+    public int enemyDamage;
     [SerializeField] int playerReward;
-    [SerializeField] int enemyHealth;
+    public int enemyHealth;
     [SerializeField] float enemyAttackCooldown;
     public float nextAttack;
 
@@ -23,10 +23,15 @@ public class Enemy : MonoBehaviour
 
 
 
+    private void OnEnable()
+    {
+       
 
+    }
     // Start is called before the first frame update
     void Start()
     {
+        playerGo = GameObject.FindGameObjectWithTag("Player");
         enemySprite = GetComponentInChildren<SpriteRenderer>();
         enemyRB = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<ChacraManager>();

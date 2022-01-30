@@ -111,7 +111,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-           // Debug.Log("Collisioned");
+            // Debug.Log("Collisioned");
+            Destroy(collision.gameObject);
             enemyHealth -= playerGo.GetComponent<PlayerController>().playerDamage;
             //Debug.Log(enemyHealth);
 

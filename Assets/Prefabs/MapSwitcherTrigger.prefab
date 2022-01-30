@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2d85f3f0b16598c4c88154579823f3dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,11 +128,14 @@ MonoBehaviour:
   colinasFelices:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   colinasTriste:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   triggerSwitch: {fileID: 0}
   gameManager: {fileID: 0}
+  otherTrigger: {fileID: 0}
 --- !u!50 &8340477867823520827
 Rigidbody2D:
   serializedVersion: 4

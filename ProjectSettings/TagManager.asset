@@ -39,12 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: Fondo
+    uniqueID: 1203924241
     locked: 0
   - name: Frente
     uniqueID: 3785769265
     locked: 0
-  - name: Fondo
-    uniqueID: 1203924241
+  - name: Default
+    uniqueID: 0
     locked: 0

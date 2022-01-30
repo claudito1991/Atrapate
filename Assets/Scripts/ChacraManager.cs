@@ -10,23 +10,40 @@ public class ChacraManager : MonoBehaviour
     [SerializeField] int score;
     [SerializeField] Transform gameStartPosition;
     [SerializeField] float minWinDistance;
+    [SerializeField] int maxScore;
+    [SerializeField] IconoID[] UIiconos;
+    public BulletMotion choosenBullet;
     public bool isHappyScene;
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        InitialBullet();
+    }
+
+    private void InitialBullet()
+    {
+        TurnIcons(0);
+        player.GetComponent<PlayerController>().PlayerDamage(5);
+        choosenBullet= bulletTypes[0];
     }
 
     public void IncreaseScore(int amount)
     {
         score += Mathf.Abs(amount);
+        choosenBullet = BulletSelector();
+        if(score>maxScore)
+        {
+            score = maxScore;
+        }
+        
     }
 
     public void DecreaseScore(int amount)
     {
         score -= Mathf.Abs(amount);
-        Debug.Log($"actual score{score}");
+        choosenBullet = BulletSelector();
+        Debug.Log($"choosen bullet{choosenBullet}");
         if(score<0)
         {
             GameOver();
@@ -45,50 +62,60 @@ public class ChacraManager : MonoBehaviour
         {
             //sfx chacra switch
             //UI update chacra icon
+            TurnIcons(0);
+            player.GetComponent<PlayerController>().PlayerDamage(5);
             return bulletTypes[0];
         }
         if (score >= 10 && score < 20)
         {
             
             player.GetComponent<PlayerController>().PlayerDamage(10);
+            TurnIcons(1);
             return bulletTypes[1];
         }
         if (score >= 20 && score < 30)
         {
-
+            TurnIcons(2);
             player.GetComponent<PlayerController>().PlayerDamage(10);
             return bulletTypes[2];
         }
         if (score >= 30 && score < 40)
         {
-
+            TurnIcons(3);
             player.GetComponent<PlayerController>().PlayerDamage(10);
             return bulletTypes[3];
         }
 
         if (score >= 40 && score < 50)
         {
-
+            TurnIcons(4);
             player.GetComponent<PlayerController>().PlayerDamage(10);
             return bulletTypes[4];
         }
 
 
-        if (score >= 50 && score < 60)
-        {
-
-            player.GetComponent<PlayerController>().PlayerDamage(10);
-            return bulletTypes[5];
-        }
-
         else
         {
-            player.GetComponent<PlayerController>().PlayerDamage(5);
-            return bulletTypes[1];
+            TurnIcons(5);
+            player.GetComponent<PlayerController>().PlayerDamage(10);
+            return bulletTypes[5];
         }
       
         
         
+    }
+
+    public void TurnIcons(int iconoNum)
+    {
+        for(int i = 0 ; i <=iconoNum; i++)
+        {
+            UIiconos[i].gameObject.SetActive(true);
+        }
+
+        for(int i = iconoNum ; i < UIiconos.Length; i++)
+        {
+            UIiconos[i].gameObject.SetActive(false);
+        }
     }
 
     public void Victory()

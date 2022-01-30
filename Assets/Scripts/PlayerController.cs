@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void FireSequence()
     {
-        bulletPrefab = gameManager.BulletSelector();
+        bulletPrefab = gameManager.choosenBullet;
         var bulletInstantiated = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         //EN LUGAR DE LLAMAR A BULLETTYPES VOY A LLAMAR LA FUNCION DEL MANAGER PARA QUE ME DIGA QUE BALA USAR EN FUNCION DEL SCORE
         //Se chequea si el personaje consumió o no un powerUP y según esto se instancia un tipo de bullet u otro. 

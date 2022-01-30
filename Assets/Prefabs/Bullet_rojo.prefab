@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac5b2a17afd1da43b6c68e45f9b1996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootSpeed: 10
+  shootSpeed: 20
   rotationAngle: 0
   smoothTime: 2
 --- !u!114 &3338348690477473488

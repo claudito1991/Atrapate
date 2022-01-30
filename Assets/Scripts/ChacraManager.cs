@@ -112,7 +112,7 @@ public class ChacraManager : MonoBehaviour
             UIiconos[i].gameObject.SetActive(true);
         }
 
-        for(int i = iconoNum ; i < UIiconos.Length; i++)
+        for(int i = UIiconos.Length - 1; i > iconoNum; i--)
         {
             UIiconos[i].gameObject.SetActive(false);
         }

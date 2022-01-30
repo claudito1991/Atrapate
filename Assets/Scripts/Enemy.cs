@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject playerGo;
     public float enemySpeed;
-    [SerializeField] float attackRange;
+    public float attackRange;
     public int enemyDamage;
     [SerializeField] int playerReward;
     public int enemyHealth;

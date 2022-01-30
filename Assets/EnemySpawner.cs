@@ -55,8 +55,9 @@ public class EnemySpawner : MonoBehaviour
             enemigo.GetComponent<Enemy>().enemyHealth = Mathf.RoundToInt( modifier * enemigo.GetComponent<Enemy>().enemyHealth);
             enemigo.GetComponent<Enemy>().enemySpeed = Mathf.RoundToInt(modifier * enemigo.GetComponent<Enemy>().enemySpeed);
             enemigo.GetComponent<Enemy>().enemyDamage = Mathf.RoundToInt(modifier * enemigo.GetComponent<Enemy>().enemyDamage);
-            enemigo.GetComponent<Transform>().localScale = modifier * enemigo.GetComponent<Transform>().localScale;
+            enemigo.GetComponent<Enemy>().attackRange = Mathf.RoundToInt(modifier * enemigo.GetComponent<Enemy>().attackRange);
 
+            enemigo.GetComponent<Transform>().localScale = modifier * enemigo.GetComponent<Transform>().localScale;
             enemigo.transform.position = bounds.center + new Vector3(offsetX, offsetY, 0);
 
         }

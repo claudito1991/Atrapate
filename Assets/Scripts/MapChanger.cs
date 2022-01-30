@@ -12,6 +12,8 @@ public class MapChanger : MonoBehaviour
     [SerializeField] BoxCollider2D triggerSwitch;
     [SerializeField] ChacraManager gameManager;
     [SerializeField] GameObject otherTrigger;
+    
+    private EnvironmentalMusic audioManager;
     private Camera mainCamera;
 
     private void OnDrawGizmos()
@@ -21,6 +23,8 @@ public class MapChanger : MonoBehaviour
     }
     private void Start()
     {
+        
+        audioManager = GameObject.FindGameObjectWithTag("Environmentalmusic").GetComponent<EnvironmentalMusic>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         
         tilemapTriste.SetActive(false);
@@ -58,6 +62,7 @@ public class MapChanger : MonoBehaviour
             Debug.Log("Triggered");
             if(gameManager.isHappyScene)
             {
+                audioManager.ChangeMusic(false);
                 Debug.Log("Entra en happy scene true");
                 
                 tilemapFeliz.GetComponent<TilemapRenderer>().sortingOrder = 4;
@@ -82,6 +87,7 @@ public class MapChanger : MonoBehaviour
                 // MUSICA AMBIENTE FELIZ
                 //CAMBIO DE PANTALLA VFX
                 Debug.Log("Entra en happy scene false");
+                audioManager.ChangeMusic(true);
                 tilemapTriste.GetComponent<TilemapRenderer>().sortingOrder = 4;
                 tilemapTriste.SetActive(false);
                 tilemapFeliz.GetComponent<TilemapRenderer>().sortingOrder = 5;

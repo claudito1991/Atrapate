@@ -63,33 +63,33 @@ public class ChacraManager : MonoBehaviour
             //sfx chacra switch
             //UI update chacra icon
             TurnIcons(0);
-            player.GetComponent<PlayerController>().PlayerDamage(5);
+            player.GetComponent<PlayerController>().PlayerDamage(10);
             return bulletTypes[0];
         }
         if (score >= 10 && score < 20)
         {
             
-            player.GetComponent<PlayerController>().PlayerDamage(10);
+            player.GetComponent<PlayerController>().PlayerDamage(15);
             TurnIcons(1);
             return bulletTypes[1];
         }
         if (score >= 20 && score < 30)
         {
             TurnIcons(2);
-            player.GetComponent<PlayerController>().PlayerDamage(10);
+            player.GetComponent<PlayerController>().PlayerDamage(20);
             return bulletTypes[2];
         }
         if (score >= 30 && score < 40)
         {
             TurnIcons(3);
-            player.GetComponent<PlayerController>().PlayerDamage(10);
+            player.GetComponent<PlayerController>().PlayerDamage(25);
             return bulletTypes[3];
         }
 
         if (score >= 40 && score < 50)
         {
             TurnIcons(4);
-            player.GetComponent<PlayerController>().PlayerDamage(10);
+            player.GetComponent<PlayerController>().PlayerDamage(35);
             return bulletTypes[4];
         }
 
@@ -97,7 +97,7 @@ public class ChacraManager : MonoBehaviour
         else
         {
             TurnIcons(5);
-            player.GetComponent<PlayerController>().PlayerDamage(10);
+            player.GetComponent<PlayerController>().PlayerDamage(40);
             return bulletTypes[5];
         }
       

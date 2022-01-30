@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BulletMotion bulletPrefab;
     [SerializeField] float xFirepointOffset;
     [SerializeField] float yFirepointOffset;
+    [SerializeField] AudioSource playerAudio;
+    [SerializeField] AudioClip[] playerClips;
+    [SerializeField] [Range(0f,1f)]  float  shootAudioPitch;
+    
+    [SerializeField] float playerAttackCooldown;
 
 
 
@@ -24,13 +29,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRB;
     private ChacraManager gameManager;
     private bool playerRenderDirection;
-
+    private Animator playerAnimator;
+    private float nextAttack;
 
     private float HorizontalMovement;
     public bool Grounded;
 
     private void Start()
     {
+        playerAnimator = GetComponentInChildren<Animator>();
         playerRB = GetComponentInChildren<Rigidbody2D>();
         playerSprite = GetComponentInChildren<SpriteRenderer>();
         gameManager = FindObjectOfType<ChacraManager>();
@@ -39,11 +46,23 @@ public class PlayerController : MonoBehaviour
     {
 
         HorizontalMovement = Input.GetAxisRaw("Horizontal");
+        playerAnimator.SetBool("isRunning", HorizontalMovement != 0.0f);
+
         PlayerSpriteFlip();
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            FireSequence();
+            if (Time.time > nextAttack)
+            {
+
+                ShootingAudio();
+                FireSequence();
+                playerAnimator.SetTrigger("Shooting");
+                nextAttack = Time.time + playerAttackCooldown;
+
+
+            }
+ 
         }
 
 
@@ -52,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Grounded)
         {
+            playerAnimator.SetTrigger("Jumping");
             //Si el player está en el suelo nos permite saltar
             Jump();
         }
@@ -68,6 +88,8 @@ public class PlayerController : MonoBehaviour
     {
         bulletPrefab = gameManager.choosenBullet;
         var bulletInstantiated = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+        
         //EN LUGAR DE LLAMAR A BULLETTYPES VOY A LLAMAR LA FUNCION DEL MANAGER PARA QUE ME DIGA QUE BALA USAR EN FUNCION DEL SCORE
         //Se chequea si el personaje consumió o no un powerUP y según esto se instancia un tipo de bullet u otro. 
         //BulletMotion bulletInstantiated = null;
@@ -95,6 +117,15 @@ public class PlayerController : MonoBehaviour
             bulletInstantiated.DirectionOfShooting(false);
             bulletInstantiated.transform.position = transform.position + new Vector3(xFirepointOffset, yFirepointOffset, 0);
         }
+    }
+
+    private void ShootingAudio()
+    {
+      
+            playerAudio.clip = playerClips[0];
+            playerAudio.outputAudioMixerGroup.audioMixer.SetFloat("Pitch_SFX", 1f / shootAudioPitch);
+            playerAudio.Play();
+        
     }
 
     private void PlayerSpriteFlip()

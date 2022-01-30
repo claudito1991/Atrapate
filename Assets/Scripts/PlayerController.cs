@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0f,1f)]  float  shootAudioPitch;
     
     [SerializeField] float playerAttackCooldown;
+   
 
 
 
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         bulletPrefab = gameManager.choosenBullet;
         var bulletInstantiated = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        
 
         
         //EN LUGAR DE LLAMAR A BULLETTYPES VOY A LLAMAR LA FUNCION DEL MANAGER PARA QUE ME DIGA QUE BALA USAR EN FUNCION DEL SCORE

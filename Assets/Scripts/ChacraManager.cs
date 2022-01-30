@@ -14,10 +14,12 @@ public class ChacraManager : MonoBehaviour
     [SerializeField] IconoID[] UIiconos;
     public BulletMotion choosenBullet;
     public bool isHappyScene;
+    private InLevelMenu levelManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = FindObjectOfType<InLevelMenu>();
         InitialBullet();
     }
 
@@ -46,6 +48,7 @@ public class ChacraManager : MonoBehaviour
         Debug.Log($"choosen bullet{choosenBullet}");
         if(score<0)
         {
+            
             GameOver();
         }
     }
@@ -53,7 +56,11 @@ public class ChacraManager : MonoBehaviour
     private void GameOver()
     {
         //player death vfx
+        levelManager.Death_VFX(transform);
         Destroy(player);
+        
+        levelManager.GameOver("La pesadilla continua");
+        
     }
 
     public BulletMotion BulletSelector()
@@ -128,7 +135,7 @@ public class ChacraManager : MonoBehaviour
             //Winning UI
             //Winning music
 
-
+            levelManager.GameOver("La pesadilla acabó");
             Destroy(player);
         }
 

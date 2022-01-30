@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     public int enemyHealth;
     [SerializeField] float enemyAttackCooldown;
     public float nextAttack;
+    [SerializeField] AudioSource enemyAudioSource;
+    [SerializeField] AudioClip impactoRecibido;
+    [SerializeField] ParticleSystem impact_vfx;
 
 
     private SpriteRenderer enemySprite;
@@ -20,6 +23,9 @@ public class Enemy : MonoBehaviour
     private Vector3 playerPosition;
     private ChacraManager gameManager;
     private float playerDistance;
+    private InLevelMenu levelManager;
+
+
 
 
 
@@ -31,6 +37,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = FindObjectOfType<InLevelMenu>();
         playerGo = GameObject.FindGameObjectWithTag("Player");
         enemySprite = GetComponentInChildren<SpriteRenderer>();
         enemyRB = GetComponent<Rigidbody2D>();
@@ -111,10 +118,12 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-            // Debug.Log("Collisioned");
+            impact_vfx.Play();
+            enemyAudioSource.PlayOneShot(impactoRecibido);
             Destroy(collision.gameObject);
             enemyHealth -= playerGo.GetComponent<PlayerController>().playerDamage;
-            //Debug.Log(enemyHealth);
+            
+
 
             if(enemyHealth<0)
             {
@@ -127,6 +136,7 @@ public class Enemy : MonoBehaviour
     private void EnemyDeath()
     {
         gameManager.IncreaseScore(playerReward);
+        levelManager.Death_VFX(transform);
         //Enemy attack vfx death.
         Destroy(gameObject);
     }

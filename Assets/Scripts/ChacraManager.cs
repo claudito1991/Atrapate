@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ChacraManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ChacraManager : MonoBehaviour
     public BulletMotion choosenBullet;
     public bool isHappyScene;
     private InLevelMenu levelManager;
+    [SerializeField] TMP_Text text;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,9 +61,10 @@ public class ChacraManager : MonoBehaviour
     {
         //player death vfx
         levelManager.Death_VFX(transform);
+        text.text = "La pesadilla continua";
         Destroy(player);
         
-        levelManager.GameOver("La pesadilla continua");
+        
         
     }
 
@@ -135,7 +140,7 @@ public class ChacraManager : MonoBehaviour
             //Winning UI
             //Winning music
 
-            levelManager.GameOver("La pesadilla acabó");
+            text.text = "La pesadilla se acabó";
             Destroy(player);
         }
 

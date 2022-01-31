@@ -97,15 +97,17 @@ public class Enemy : MonoBehaviour
             return;
         }
         playerDistance = Vector3.Distance(playerGo.transform.position, transform.position);
-       
-        if (playerDistance < attackRange)
+        float xDistance = Mathf.Abs(playerGo.transform.position.x - transform.position.x);
+        Debug.Log($"player distance: {playerDistance}");
+        Debug.Log($"player X distance: {xDistance}");
+
+        if (xDistance < attackRange)
         {
+            Debug.Log("Enemy attacks");
             if (Time.time > nextAttack)
             {
                 //Enemy attack vfx/sfx
                 gameManager.DecreaseScore(enemyDamage);
-                
-               
                 
                 nextAttack = Time.time + enemyAttackCooldown;
                 

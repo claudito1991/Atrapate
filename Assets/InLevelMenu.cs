@@ -9,20 +9,27 @@ public class InLevelMenu : MonoBehaviour
 {
     [SerializeField] GameObject levelMenu;
     [SerializeField] ParticleSystem death_vfx;
-    public GameObject text;
 
+    public bool isMenuVisible;
+
+    private void Start()
+    {
+        isMenuVisible = false;
+        
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(levelMenu.activeSelf)
-            {
-                levelMenu.SetActive(false);
-            }
-            else
+            if(!isMenuVisible)
             {
                 levelMenu.SetActive(true);
             }
+            else
+            {
+                levelMenu.SetActive(false);
+            }
+            isMenuVisible = !isMenuVisible;
         }
     }
     public void ReloadGame()
@@ -35,14 +42,7 @@ public class InLevelMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void GameOver(string textoFinDeJuego)
-        
-    {
-        text.SetActive(true);
-        text.GetComponent<TextMeshPro>().text = textoFinDeJuego;
 
-
-    }
 
     public void Death_VFX( Transform ubicacion)
     {

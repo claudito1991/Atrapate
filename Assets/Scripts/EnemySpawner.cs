@@ -11,8 +11,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] float enemyStatsModifier;
     [SerializeField] int enemyQuantity;
-    [SerializeField] float enemySpeedModifier;
+    //[SerializeField] float enemySpeedModifier;
     [SerializeField] int MaxLevelSize = 1000;
+    [SerializeField] float healthModifier;
+    [SerializeField] float speedModifier;
+    [SerializeField] float damageModifier;
+    [SerializeField] float attackRangeModifier;
+
     private float distanceToStart;
     //private Collider2D collider;
     private Bounds bounds;
@@ -52,10 +57,10 @@ public class EnemySpawner : MonoBehaviour
             var enemigo = Instantiate(enemyPrefab, enemySpawnPosition.transform.position, enemyPrefab.transform.rotation);
             float modifier = ((distanceToStart * enemyStatsModifier) / MaxLevelSize) +1;
             Debug.Log(modifier);
-            enemigo.GetComponent<Enemy>().enemyHealth = Mathf.RoundToInt( modifier * enemigo.GetComponent<Enemy>().enemyHealth);
-            enemigo.GetComponent<Enemy>().enemySpeed = Mathf.RoundToInt(modifier * enemigo.GetComponent<Enemy>().enemySpeed);
-            enemigo.GetComponent<Enemy>().enemyDamage = Mathf.RoundToInt(modifier * enemigo.GetComponent<Enemy>().enemyDamage);
-            enemigo.GetComponent<Enemy>().attackRange = Mathf.RoundToInt(modifier * enemigo.GetComponent<Enemy>().attackRange);
+            enemigo.GetComponent<Enemy>().enemyHealth = Mathf.RoundToInt( modifier*healthModifier * enemigo.GetComponent<Enemy>().enemyHealth);
+            enemigo.GetComponent<Enemy>().enemySpeed = Mathf.RoundToInt(modifier *speedModifier* enemigo.GetComponent<Enemy>().enemySpeed);
+            enemigo.GetComponent<Enemy>().enemyDamage = Mathf.RoundToInt(modifier *damageModifier* enemigo.GetComponent<Enemy>().enemyDamage);
+            enemigo.GetComponent<Enemy>().attackRange = Mathf.RoundToInt(modifier * attackRangeModifier*enemigo.GetComponent<Enemy>().attackRange);
 
             enemigo.GetComponent<Transform>().localScale = modifier * enemigo.GetComponent<Transform>().localScale;
             enemigo.transform.position = bounds.center + new Vector3(offsetX, offsetY, 0);

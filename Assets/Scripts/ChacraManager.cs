@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ChacraManager : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class ChacraManager : MonoBehaviour
     public bool isHappyScene;
     private InLevelMenu levelManager;
     [SerializeField] TMP_Text text;
+    [SerializeField] SpriteRenderer sadSky;
+    [SerializeField] float skyVariationSpeed;
+    [SerializeField] PostProcessVolume nightmare;
+    [SerializeField] PostProcessVolume dream;
+    [SerializeField] float tiempoBlend;
     
 
 
@@ -25,6 +31,16 @@ public class ChacraManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<InLevelMenu>();
         InitialBullet();
+        dream.weight = 1;
+        nightmare.weight = 0;
+    }
+    private void Update()
+    {
+        if(!isHappyScene)
+        {
+            sadSky.color = Color.Lerp(Color.white, Color.red, Mathf.PingPong(Time.time, skyVariationSpeed));
+        }
+        
     }
 
     private void InitialBullet()
@@ -151,5 +167,44 @@ public class ChacraManager : MonoBehaviour
         isHappyScene = happy;
     }
 
+    public void ChangePostPro(string estado)
+    {
+        Debug.Log("coroutine launched");
+        StartCoroutine(changeAcrossTime(estado));
+    }
+
+    IEnumerator changeAcrossTime(string estado)
+    {
+        
+        float elapsedTime = 0;
+        float waitTime = 3f;
+
+
+        if(estado == "dream")
+        {
+            while (elapsedTime < waitTime)
+            {
+                
+                dream.weight = Mathf.Lerp(0f, 1f, (elapsedTime / waitTime));
+                nightmare.weight = Mathf.Lerp(1f, 0f, (elapsedTime / waitTime));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        if(estado == "nightmare")
+        {
+            while (elapsedTime < waitTime)
+            {
+
+                dream.weight = Mathf.Lerp(1f, 0f, (elapsedTime / waitTime));
+                nightmare.weight = Mathf.Lerp(0f, 1f, (elapsedTime / waitTime));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+       
+    }
 
 }

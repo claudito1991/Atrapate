@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerGo: {fileID: 0}
-  enemySpeed: 0.5
+  enemySpeed: 5
   attackRange: 4.5
   enemyDamage: 5
   playerReward: 5

@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
+
         playerPosition = playerGo.transform.position- transform.position;
 
 
@@ -85,8 +86,8 @@ public class Enemy : MonoBehaviour
     private void EnemyChasing()
     {
 
-        enemyRB.velocity = new Vector2(playerPosition.x * enemySpeed, enemyRB.velocity.y);
-       
+        //enemyRB.velocity = new Vector2(playerPosition.x * enemySpeed, enemyRB.velocity.y);
+        transform.Translate(playerPosition.normalized * Time.deltaTime * enemySpeed);
 
     }
 

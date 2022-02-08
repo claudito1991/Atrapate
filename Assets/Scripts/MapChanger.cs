@@ -12,7 +12,10 @@ public class MapChanger : MonoBehaviour
     [SerializeField] BoxCollider2D triggerSwitch;
     [SerializeField] ChacraManager gameManager;
     [SerializeField] GameObject otherTrigger;
-    
+  
+
+
+
     private EnvironmentalMusic audioManager;
     private Camera mainCamera;
 
@@ -21,6 +24,8 @@ public class MapChanger : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position,new Vector3(2,2,2));
     }
+
+    
     private void Start()
     {
         
@@ -41,6 +46,7 @@ public class MapChanger : MonoBehaviour
 
     private void Update()
     {
+       
         CheckOtherTrigger();
     }
 
@@ -62,6 +68,7 @@ public class MapChanger : MonoBehaviour
             Debug.Log("Triggered");
             if(gameManager.isHappyScene)
             {
+                gameManager.ChangePostPro("nightmare");
                 audioManager.ChangeMusic(false);
                 Debug.Log("Entra en happy scene true");
                 
@@ -93,6 +100,7 @@ public class MapChanger : MonoBehaviour
                 tilemapFeliz.GetComponent<TilemapRenderer>().sortingOrder = 5;
                 tilemapFeliz.SetActive(true);
                 gameManager.HappyState(true);
+                gameManager.ChangePostPro("dream");
 
                 foreach (GameObject colina in colinasFelices)
                 {
